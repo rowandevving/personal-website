@@ -1,0 +1,56 @@
+---
+title: Home
+---
+
+<section class="pt-20 md:pt-24">
+  <h1 class="text-2xl font-bold text-ui-text">
+    I'm <span class="text-ui-accent">Rowan</span>
+  </h1>
+</section>
+
+<section id="about" class="py-12">
+  <div class="space-y-8">
+    <div class="space-y-4">
+      <p class="text-sm leading-relaxed text-ui-subtext">
+        I'm an aspiring full-stack developer interested in web design, education technology and robotics.
+        I may also poke around with minecraft modding from time to time as well.
+      </p>
+      <p class="text-sm leading-relaxed text-ui-subtext">
+        I'm based in the UK and have always been fascinated by how computers work, and how technology can solve real problems that real people face,
+        so I'm always trying to come up with new projects to work on.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-8">
+      <div>
+        <h3 class="mb-3 text-sm font-medium text-ui-accent">Programming Languages</h3>
+        <ul class="space-y-2 text-xs text-ui-subtext">
+          {% for item in skills.languages %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-3 text-sm font-medium text-ui-accent">Web Development</h3>
+        <ul class="space-y-2 text-xs text-ui-subtext">
+          {% for item in skills.webdev %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="pt-12">
+  <div class="space-y-8">
+    <h2 class="text-xl font-bold text-ui-accent">My Socials</h2>
+      <div class="flex items-center space-x-5">
+        {% for social in socials %}
+          <a href="{{ social.url }}">
+            <img src="{{ social.name.toLowerCase() | icon("simpleicons")}}" inline class="h-6 w-6 fill-ui-subtext hover:fill-ui-text transition-colors"/>
+            <span class="sr-only">{{ social.name }}</span>
+          </a>
+        {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+layout: layout/base.njk
+
+metas:
+  site: Rowan
+  title: '=title'
+  description: '$ p'
+  lang: en
+  icon: /assets/favicon.ico
+  color: '#8da97f'
+
+skills:
+  languages:
+    - Golang
+    - Java
+    - Python
+  webdev:
+    - HTML/CSS/JavaScript
+    - React & Preact
+    - Astro
+
+socials:
+  - name: GitHub
+    url: https://github.com/rowandevving
+  - name: Bluesky
+    url: https://bsky.app/profile/rowandev.bsky.social
+  - name: YouTube
+    url: https://www.youtube.com/@rowandevving
+  - name: Modrinth
+    url: https://modrinth.com/user/rowandev
