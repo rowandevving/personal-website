@@ -4,7 +4,6 @@ import unocss from "lume/plugins/unocss.ts"
 import nunjucks from "lume/plugins/nunjucks.ts"
 import nav from "lume/plugins/nav.ts"
 import lightningcss from "lume/plugins/lightningcss.ts"
-import relativeUrls from "lume/plugins/relative_urls.ts"
 import icons from "lume/plugins/icons.ts"
 import inline from "lume/plugins/inline.ts"
 import metas from "lume/plugins/metas.ts"
@@ -42,11 +41,14 @@ site.use(unocss({
         }
       }
     },
+    shortcuts: {
+      'btn': "flex items-center gap-2 px-4 py-2 bg-ui-elevated text-ui-text font-medium text-sm border-b-ui-surface border-b-7 active:translate-y-0.5 active:border-b-3 select-none transition-all duration-100",
+      'btn-primary': "bg-ui-accent text-ui-base border-ui-base/40"
+    }
   },
   cssFile: "styles.css"
 }))
 site.use(lightningcss())
-site.use(relativeUrls())
 site.use(icons())
 site.use(inline())
 site.use(metas())
