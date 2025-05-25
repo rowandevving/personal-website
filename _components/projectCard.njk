@@ -1,0 +1,22 @@
+<a 
+href="{{ link }}"
+class="block rounded-md border-1 border-transparent bg-ui-surface p-5 transition-all hover:border-ui-accent/40 group"
+aria-label="View {{ name }} project"
+>
+  <div class="space-y-3">
+    <h3 class="text-base font-medium text-ui-accent">{{ name }}</h3>
+    <p class="text-sm leading-relaxed text-ui-text">{{ description }}</p>
+    <div class="flex flex-wrap gap-2">
+      {% for tag in tags %}
+      <span class="inline-flex rounded-sm bg-ui-elevated px-2 py-0.5 text-xs text-ui-subtext">
+        {{ tag }}
+      </span>
+      {% endfor %}
+    </div>
+    <div class="pt-1">
+      <span class="inline-flex items-center text-xs text-ui-accent group-hover:underline">
+        Visit <img src="{{ "arrow-square-out" | icon("phosphor") }}" inline class="h-3 w-3 ml-1">
+      </span>
+    </div>
+  </div>
+</a>

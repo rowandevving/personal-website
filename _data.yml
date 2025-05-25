@@ -27,3 +27,32 @@ socials:
     url: https://www.youtube.com/@rowandevving
   - name: Modrinth
     url: https://modrinth.com/user/rowandev
+
+projects:
+  - name: Biome Name Fix
+    link: https://biomenamefix.streamlit.app
+    description: Create lang files to fix ugly looking client-side biome names when playing with Minecraft worldgen datapacks.
+    tags:
+      - Python
+      - Streamlit
+      - Minecraft
+  - name: BlueRinth
+    link: https://github.com/worldwidepixel/bluerinth
+    description: A browser extension that allows you to change Modrinth's accent colour. Made in collaboration with WorldWidePixel.
+    tags:
+      - Chrome Extensions
+      - CSS
+  - name: This site!
+    link: https://github.com/rowandevving/personal-website
+    description: The third complete rewrite of my website. My own little CSS playground.
+    tags:
+      - Static Site
+      - Lume
+      - Unocss
+      - Nunjucks
+  - name: Heather
+    link: https://github.com/rowandevving/heather
+    description: A little general-purpose discord bot written in Go.
+    tags:
+      - Discord Bot
+      - Go

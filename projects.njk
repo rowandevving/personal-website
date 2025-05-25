@@ -1,0 +1,21 @@
+---
+title: Projects
+---
+
+<section class="pt-20 md:pt-24">
+  <h1 class="text-2xl font-bold text-ui-accent">
+    Projects
+  </h1>
+  <p class="text-ui-subtext text-sm pt-2">
+    Here are some of the various things I've made myself or with the help of others. Most of them were simply a learning experience, 
+    though I hope they may be of help to someone.
+  </p>
+</section>
+
+<section id="projects" class="pt-12">
+  <div class="flex flex-col gap-7">
+  {% for project in projects %}
+    {{ comp.projectCard({ link: project.link, name: project.name, description: project.description, tags: project.tags }) | await | safe }}
+  {% endfor %}
+  </div>
+</section>
