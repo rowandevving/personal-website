@@ -1,0 +1,67 @@
+---
+title: Blog
+---
+
+
+<section class="py-20 md:py-24">
+  <div class="space-y-4">
+    <h1 class="text-2xl font-bold text-ui-accent">
+      Blog
+    </h1>
+    <p class="text-sm text-ui-subtext">
+      Here is where you'll find my ramblings about what I've been doing as well as other random stuff I'm currently interested in.
+    </p>
+  </div>
+</section>
+
+<section id="articles">
+  <div class="space-y-12">
+    {% for article in nav.menu("/blog/").children %}
+      <div>
+        <article class="group">
+          <div class="space-y-4">
+            <a href="{{ article.data.url }}">
+              <h2 class="text-xl font-medium leading-tight text-ui-text transition-colors group-hover:text-ui-accent">
+                {{ article.data.title }}
+              </h2>
+            </a>
+
+            <div class="relative">
+              <p class="text-sm leading-relaxed text-ui-subtext line-clamp-4">{{ article.data.excerpt }}</p>
+              <div class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-ui-base to-transparent pointer-events-none"></div>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4 text-xs text-ui-text/50">
+                <time datetime="{{ article.data.date | date('DATE') }}">
+                  {{ article.data.date | date('HUMAN_DATE') }} 
+                </time>
+              </div>
+
+              <div class="flex space-x-1">
+                  <p class="text-xs text-ui-accent/60">
+                    {% for tag in article.data.tags %}
+                      {{ tag }}
+                      {% if loop.index0 < article.data.tags.length -1 %} • {% endif %}
+                    {% endfor %}
+                  </p>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a href="{{ article.data.url }}" class="inline-flex items-center text-xs text-ui-accent hover:underline">
+                Read More <img src="{{ "arrow-right" | icon("phosphor") }}" inline class="h-3 w-3 ml-1">
+              </a>
+            </div>
+          </div>
+        </article>
+
+        {% if loop.index0 < nav.menu("/blog/").children.length -1 %}
+          <div class="mt-8 pt-8">
+            <div class="h-px bg-ui-elevated/50"></div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

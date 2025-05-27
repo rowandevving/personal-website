@@ -7,6 +7,7 @@ import lightningcss from "lume/plugins/lightningcss.ts"
 import icons from "lume/plugins/icons.ts"
 import inline from "lume/plugins/inline.ts"
 import metas from "lume/plugins/metas.ts"
+import date from "lume/plugins/date.ts"
 
 const site = lume({
   src: "./",
@@ -53,8 +54,16 @@ site.use(lightningcss())
 site.use(icons())
 site.use(inline())
 site.use(metas())
+site.use(date())
+
 site.add("https://unpkg.com/@unocss/reset@66.1.2/tailwind.css", "styles.css")
 site.add("/assets")
+
+site.preprocess([".md"], (pages) => {
+  for (const page of pages) {
+    page.data.excerpt ??= (page.data.content as string).split(/<!--\s*more\s*-->/i)[0]
+  }
+})
 
 site.data("year", new Date().getFullYear())
 
