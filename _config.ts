@@ -8,6 +8,7 @@ import icons from "lume/plugins/icons.ts"
 import inline from "lume/plugins/inline.ts"
 import metas from "lume/plugins/metas.ts"
 import date from "lume/plugins/date.ts"
+import codeHighlight from "lume/plugins/code_highlight.ts"
 
 const site = lume({
   src: "./",
@@ -22,7 +23,7 @@ site.use(nunjucks({
 }))
 site.use(nav())
 site.use(googleFonts({
-  fonts: "https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap",
+  fonts: "https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap",
   cssFile: "styles.css"
 }))
 site.use(unocss({
@@ -48,20 +49,36 @@ site.use(unocss({
       'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(141,169,127,0.5)]`
     }
   },
-  cssFile: "styles.css"
+  cssFile: "styles.css",
+  reset: "tailwind"
 }))
 site.use(lightningcss())
 site.use(icons())
 site.use(inline())
 site.use(metas())
 site.use(date())
+site.use(codeHighlight())
 
-site.add("https://unpkg.com/@unocss/reset@66.1.2/tailwind.css", "styles.css")
+site.add("/assets/styles.css", "styles.css")
 site.add("/assets")
 
+// make an excerpt for each page to be used by the article preview
 site.preprocess([".md"], (pages) => {
   for (const page of pages) {
     page.data.excerpt ??= (page.data.content as string).split(/<!--\s*more\s*-->/i)[0]
+  }
+})
+
+// strip images from article previews
+site.process([".html"], (pages) => {
+  for (const page of pages) {
+    const previewElements = page.document.querySelectorAll("article p")
+    for (const previewElement of previewElements) {
+      const images = previewElement.querySelectorAll("img")
+      for (const image of images) {
+        image.remove()
+      }
+    }
   }
 })
 
