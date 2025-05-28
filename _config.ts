@@ -24,7 +24,11 @@ site.use(nunjucks({
 site.use(nav())
 site.use(googleFonts({
   fonts: "https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap",
-  cssFile: "styles.css"
+  cssFile: "styles.css",
+  subsets: [
+    "latin",
+    "latin-ext"
+  ]
 }))
 site.use(unocss({
   options: {
