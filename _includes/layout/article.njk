@@ -2,11 +2,33 @@
 layout: layout/base.njk
 ---
 
-<h1 class="text-5xl font-semibold text-ui-accent pt-20 md:pt-24">
-  {{ title }}
-</h1>
+<section class="space-y-4">
+  <h1 class="text-5xl font-semibold text-ui-accent pt-20 md:pt-24">
+    {{ title }}
+  </h1>
+  <div class="flex items-center space-x-6">
+    <div class="flex items-center space-x-4 text-xs text-ui-text/50">
+      <time datetime="{{ date | date('DATE') }}">
+      {{ date | date('HUMAN_DATE') }} 
+      </time>
+    </div>
+
+    <div class="flex space-x-1">
+      <p class="text-xs text-ui-accent/60">
+        {% for tag in tags %}
+          {{ tag }}
+          {% if loop.index0 < tags.length -1 %} • {% endif %}
+        {% endfor %}
+      </p>
+    </div>
+  </div>
+</section>
+
 <div class="h-px bg-ui-elevated/50 my-6"></div>
-<div class="article-body">
+
+<section>
+  <div class="article-body">
   {{ content | safe }}
-</div>
+  </div>
+</section>
 
