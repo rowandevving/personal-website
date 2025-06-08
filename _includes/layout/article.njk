@@ -2,24 +2,34 @@
 layout: layout/base.njk
 ---
 
-<section class="space-y-4">
-  <h1 class="text-5xl font-semibold text-ui-accent pt-20 md:pt-24">
+<section class="py-12">
+  <a href="/blog" class="inline-flex items-center text-sm text-ui-subtext transition-colors hover:text-ui-accent">
+    <img src="{{ "arrow-left" | icon("phosphor") }}" class="mr-2 h-4 w-4" inline>
+    Back to Blog
+  </a>
+</section>
+
+<section class="space-y-6 mb-12">
+  <h1 class="text-3xl font-bold text-ui-text leading-tight">
     {{ title }}
   </h1>
-  <div class="flex items-center space-x-6">
-    <div class="flex items-center space-x-4 text-xs text-ui-text/50">
+
+  <div class="flex items-center space-x-6 text-sm text-ui-text/60">
+    <div class="flex items-center space-x-2">
+      <img src="{{ "calendar-blank" | icon("phosphor") }}" class="h-5 w-5" inline>
       <time datetime="{{ date | date('DATE') }}">
       {{ date | date('HUMAN_DATE') }} 
       </time>
     </div>
 
-    <div class="flex space-x-1">
-      <p class="text-xs text-ui-accent/60">
-        {% for tag in tags %}
+    <div class="flex flex-wrap gap-2">
+      <img src="{{ "hash" | icon("phosphor") }}" class="w-5 h-5" inline> 
+      {% for tag in tags %}
+        <span class="inline-flex text-sm">
           {{ tag }}
-          {% if loop.index0 < tags.length -1 %} • {% endif %}
-        {% endfor %}
-      </p>
+        </span>
+        {% if loop.index0 < tags.length -1 %}•{% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
