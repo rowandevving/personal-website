@@ -10,7 +10,6 @@
   </title>
 </head>
 <body class="bg-ui-base min-h-screen text-x-text font-sans relative">
-  <div id="particles" class="absolute top-0 left-0 w-full h-full z--1"></div>
   <header class="sticky top-0 z-10 border-b-1 border-b-solid border-ui-elevated/30 bg-ui-base/80 backdrop-blur-sm">
     <div class="mx-auto max-w-2xl px-4 py-6">
       <div class="flex items-center justify-between">
@@ -41,13 +40,5 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script type="text/javascript">
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (!reducedMotion.matches) {
-      particlesJS.load("particles", "/assets/particles.json")
-    }
-  </script>
 </body>
 </html>
