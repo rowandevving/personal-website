@@ -9,7 +9,7 @@
     {{ title }} {% if title %} - {% endif %} Rowan
   </title>
 </head>
-<body class="bg-ui-base min-h-screen text-x-text font-sans relative">
+<body class="bg-ui-base min-h-screen text-x-text font-sans relative flex flex-col">
   <header class="sticky top-0 z-10 border-b-1 border-b-solid border-ui-elevated/30 bg-ui-base/80 backdrop-blur-sm">
     <div class="mx-auto max-w-2xl px-4 py-6">
       <div class="flex items-center justify-between">
@@ -26,16 +26,15 @@
     </div>
   </header>
   
-  <main class="mx-auto max-w-2xl px-4">
+  <main class="mx-auto max-w-2xl px-4 flex-1">
     {{ content | safe }}
   </main>
 
   <footer>
-    <img src="/assets/footer.svg" inline>
-    <div class="bg-ui-elevated pb-4">
+    <div class="pb-2 pt-60px">
       <div class="mx-auto max-w-2xl text-center lg:translate-y--4">
         <p class="lg:text-sm text-xs text-ui-text/50">
-          © {{ year }} Rowan • Generated with <a href="https://lume.land/" class="hover:text-ui-accent">Lume</a>
+          © {{ year }} Rowan. All Rights Reserved • Generated with <a href="https://lume.land/" class="hover:text-ui-accent">Lume</a>
         </p>
       </div>
     </div>
