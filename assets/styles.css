@@ -1,9 +1,9 @@
 @import url("https://unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css");
 
 .article-body {
-  --accent: rgb(141, 169, 127);
-  --text: rgb(201, 216, 197, 0.9);
-  --surface: rgb(26, 41, 34);
+  --accent: rgb(156, 207, 216);
+  --text: rgb(224, 222, 244);
+  --surface: rgb(42, 39, 63);
 }
 
 .article-body p {

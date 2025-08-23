@@ -38,12 +38,12 @@ site.use(unocss({
       },
       colors: {
         ui: {
-          base: "rgb(15, 26, 21)",
-          accent: "rgb(141, 169, 127)",
-          text: "rgb(201, 216, 197)",
-          subtext: "rgba(201, 216, 197, 0.7)",
-          surface: "rgb(26, 41, 34)",
-          elevated: "rgb(42, 59, 47)"
+          base: "rgb(35, 33, 54)",
+          accent: "rgb(156, 207, 216)",
+          text: "rgb(224, 222, 244)",
+          subtext: "rgba(224, 222, 244, 0.7)",
+          surface: "rgb(42, 39, 63)",
+          elevated: "rgb(57, 53, 82)"
         }
       }
     },
