@@ -48,9 +48,9 @@ site.use(unocss({
       }
     },
     shortcuts: {
-      'btn': `relative flex items-center gap-2 px-4 py-2 bg-ui-elevated text-ui-text font-medium text-sm rounded-md 
-      shadow-[0_4px_0_rgb(26,41,34)] active:translate-y-1 active:shadow-none transition-all`,
-      'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(141,169,127,0.5)]`
+      'btn': `relative flex items-center gap-2 px-4 py-2 bg-ui-elevated text-ui-text font-medium text-sm 
+      shadow-[0_4px_0_rgb(42,39,63)] active:translate-y-1 active:shadow-none transition-all`,
+      'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(156,207,216,0.5)]`
     }
   },
   cssFile: "styles.css",
