@@ -34,7 +34,8 @@ site.use(unocss({
   options: {
     theme: {
       fontFamily: {
-        sans: "Figtree"
+        sans: "Figtree",
+        display: "pixelserif"
       },
       colors: {
         ui: {
@@ -65,6 +66,7 @@ site.use(codeHighlight())
 
 site.add("/assets/styles.css", "styles.css")
 site.add("/assets")
+site.add("/assets/fonts/", "/fonts/")
 
 // make an excerpt for each page to be used by the article preview
 site.preprocess([".md"], (pages) => {

@@ -1,5 +1,13 @@
 @import url("https://unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css");
 
+@font-face {
+  font-family: "pixelserif";
+  src: url("fonts/Pixelserif.woff2");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 .article-body {
   --accent: rgb(156, 207, 216);
   --text: rgb(224, 222, 244);
@@ -23,17 +31,19 @@
 
 .article-body :is(h2, h3,  h4, h5, h6) {
   color: var(--accent);
-  font-weight: 500;
+  font-weight: normal;
+  font-family: "pixelserif";
+
 }
 
 .article-body h2 {
-  font-size: 1.4em;
+  font-size: 1.7em;
   margin-top: 1.6em;
   margin-bottom: 0.8em;
   line-height: 1.4;
 }
 .article-body h3 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-top: 1.4em;
 }
 

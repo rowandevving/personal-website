@@ -5,7 +5,7 @@ title: Blog
 
 <section class="py-20 md:py-24">
   <div class="space-y-4">
-    <h1 class="text-2xl font-bold text-ui-accent">
+    <h1 class="text-3xl text-ui-accent font-display">
       Blog
     </h1>
     <p class="text-sm text-ui-subtext">
@@ -21,7 +21,7 @@ title: Blog
         <article class="group">
           <div class="space-y-4">
             <a href="{{ article.data.url }}">
-              <h2 class="text-xl font-medium leading-tight text-ui-text transition-colors group-hover:text-ui-accent">
+              <h2 class="text-2xl leading-tight text-ui-text transition-colors group-hover:text-ui-accent font-display">
                 {{ article.data.title }}
               </h2>
             </a>
@@ -30,7 +30,7 @@ title: Blog
               <p class="text-sm leading-relaxed text-ui-subtext line-clamp-4 cursor-text">
                 {{ article.data.excerpt | md(true) | safe }}
               </p>
-              <div class="absolute bottom-0 left-0 right-0 h-15 bg-gradient-to-t from-ui-base to-transparent pointer-events-none"></div>
+              <div class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-ui-base to-transparent pointer-events-none"></div>
             </div>
 
             <div class="flex items-center justify-between">
