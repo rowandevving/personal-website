@@ -9,9 +9,10 @@
 }
 
 .article-body {
-  --accent: rgb(156, 207, 216);
+  --accent: rgb(234, 154, 151);
   --text: rgb(224, 222, 244);
   --surface: rgb(42, 39, 63);
+  --elevated: rgb(57, 53, 82);
 }
 
 .article-body p {
@@ -48,7 +49,6 @@
 }
 
 .article-body img {
-  border-radius: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
   border: 2px solid var(--accent);
@@ -88,7 +88,7 @@
   overflow: hidden;
   overflow-x: scroll;
   scrollbar-width: thin;
-  scrollbar-color: rgb(42, 59, 47) transparent;
+  scrollbar-color: var(--elevated) transparent;
 }
 
 .article-body pre code {
@@ -109,11 +109,10 @@ code .hljs-string {
 
 .article-body code {
   font-family: "Roboto Mono";
-  background-color: var(--surface);
-  border-radius: .2em;
+  background-color: var(--elevated);
   padding: 2px;
 }
 
 .article-body blockquote code {
-  background-color: rgb(42, 59, 47);
+  background-color: var(--elevated);
 }

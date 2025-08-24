@@ -40,7 +40,7 @@ site.use(unocss({
       colors: {
         ui: {
           base: "rgb(35, 33, 54)",
-          accent: "rgb(156, 207, 216)",
+          accent: "rgb(234, 154, 151)",
           text: "rgb(224, 222, 244)",
           subtext: "rgba(224, 222, 244, 0.7)",
           surface: "rgb(42, 39, 63)",
@@ -51,7 +51,8 @@ site.use(unocss({
     shortcuts: {
       'btn': `relative flex items-center gap-2 px-4 py-2 bg-ui-elevated text-ui-text font-medium text-sm 
       shadow-[0_4px_0_rgb(42,39,63)] active:translate-y-1 active:shadow-none transition-all`,
-      'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(156,207,216,0.5)]`
+      'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(234,154,151,0.5)]`,
+      'hero-text': `bg-gradient-to-r from-ui-accent to-[#c4a7e7] inline-block text-transparent bg-clip-text`
     }
   },
   cssFile: "styles.css",
