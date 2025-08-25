@@ -10,10 +10,10 @@
   </title>
 </head>
 <body class="bg-ui-base min-h-screen text-x-text font-sans relative flex flex-col">
-  <header class="sticky top-0 z-10 border-b-1 border-b-solid border-ui-elevated/50 bg-ui-base">
+  <header class="sticky top-0 z-10 border-b-1 border-b-solid border-transparent bg-ui-base transition-border" id="header">
     <div class="mx-auto max-w-2xl px-4 py-6">
       <div class="flex items-center justify-between">
-        <a href="/" class="text-2xl text-ui-accent decoration-none font-display">
+        <a href="/" class="text-22px text-ui-accent decoration-none font-display">
           Rowan
         </a>
         <nav class="flex space-x-6 text-sm">
@@ -40,5 +40,21 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const header = document.getElementById("header")
+
+    function updateHeader() {
+      if (window.scrollY < 1) {
+        header.style.borderBottomColor = "transparent"
+      } else {
+        header.style.borderBottomColor = "rgba(57,53,82,.5)"
+      }
+    }
+
+    updateHeader()
+
+    window.addEventListener("scroll", updateHeader)
+  </script>
 </body>
 </html>
