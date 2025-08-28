@@ -5,8 +5,8 @@ metas:
   title: '=title'
   description: '$ p'
   lang: en
-  icon: /assets/favicon.ico
-  color: '#8da97f'
+  icon: /assets/favicon/favicon.ico
+  color: '#ea9a97'
 
 skills:
   languages:
