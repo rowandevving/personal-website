@@ -1,0 +1,58 @@
+---
+title: Cool People
+---
+<style>
+  [x-cloak]{display: none}
+</style>
+
+<section class="pt-20 md:pt-24">
+  <div class="space-y-4">
+    <h1 class="text-3xl hero-text font-display">
+      Cool People
+    </h1>
+    <p class="text-sm text-ui-subtext">
+      Here's a list of cool sites I think are worth checking out. If we know each other and you'd like yours here, just hit the button and fill out the form!
+    </p>
+  </div>
+</section>
+
+<section id="websites" class="pt-10">
+  <div x-data="{ websites: [] }" x-init="websites = await (await fetch('/api/all_websites')).json()">
+    <div class="flex flex-row justify-center w-full p-10 text-ui-subtext/50 text-sm items-center bg-ui-surface animate-pulse rounded-sm" x-show="!websites.length" x-cloak>
+      Loading...
+    </div>
+    <div class="grid grid-cols-2 gap-2">
+    <template x-for="website in websites" :key="website.data.domain" x-show="websites.length" x-cloak>
+      <!-- why is there no easier way to do this eugh -->
+      <a :href="`https://${website.data.domain}`" class="group relative flex items-center gap-2 p-2 pr-4 transition-all rounded-sm w-full"
+      x-data="{ hover: false }"
+      @mouseover="hover=true"
+      @mouseleave="hover=false"
+      :style="{ backgroundColor: hover ? `${website.data.colour}50` : '' }" 
+      >
+        <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center bg-ui-text rounded-full">
+          <img :src="`https://icons.duckduckgo.com/ip3/${website.data.domain}.ico`" class="w-full h-full rounded-inherit" :alt="website.title">
+        </div>
+
+        <div class="flex-1 min-w-0">
+          <h3 class="truncate text-sm font-semibold text-ui-text transition-colors" x-text="website.data.domain"></h3>
+          <p class="truncate text-xs text-ui-subtext transition-colors" x-text="website.title"></p>
+        </div>
+
+        <img src="{{ "arrow-square-out" | icon("phosphor") }}" inline class="ml-auto h-5 w-5 text-transparent group-hover:text-ui-subtext transition-colors">
+      </a>
+    </template>
+    </div>
+  </div>
+</section>
+
+<div class="h-px bg-ui-elevated/50 my-6"></div>
+
+<section id="submit-site">
+  <button class="btn btn-primary">
+    <img src="{{ "heart" | icon("phosphor") }}" inline class="w-5 h-5">
+    Add your website
+  </button>
+</section>
+
+<script src="/assets/js/alpine.min.js" defer></script>
