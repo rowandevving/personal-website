@@ -23,7 +23,7 @@ type WebsiteData struct {
 	Colour string `json:"colour"`
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func AllWebsites(w http.ResponseWriter, r *http.Request) {
 
 	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
 	if err != nil {
