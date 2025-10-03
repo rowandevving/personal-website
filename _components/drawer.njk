@@ -1,0 +1,32 @@
+<div> 
+  <div
+    x-show="open"
+    x-transition.opacity.duration.300ms
+    class="fixed inset-0 bg-black/50 z-50"
+    aria-hidden="true"
+    @click="open=false"
+  ></div>
+
+  <aside
+    x-show="open"
+    x-transition:enter="transform transition ease-in-out duration-300"
+    x-transition:enter-start="-translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transform transition ease-in-out duration-300"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="-translate-x-full"
+    class="fixed inset-y-0 left-0 w-120 max-w-full p-6 overflow-auto z-60 bg-ui-base"
+    @keydown.escape.window="open=false"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="drawer-title"
+    x-cloak
+  >
+    <h2 class="inline-flex items-center mb-6 text-sm font-semibold uppercase text-ui-text/50">Submit website</h2>
+    <button @click="open = false" class="text-ui-text/50 bg-transparent hover:bg-ui-elevated hover:text-ui-subtext text-sm p-1.5 absolute top-4.5 right-4.5 inline-flex items-center">
+      <img src="{{ "x" | icon("phosphor") }}" inline class="w-5 h-5">
+      <span class="sr-only">Close drawer</span>
+    </button>
+    {{ children | safe }}
+  </aside>
+<div>

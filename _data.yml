@@ -56,3 +56,15 @@ projects:
     tags:
       - Discord Bot
       - Go
+
+website_colours:
+  - '#ea9a97'
+  - '#ebbcba'
+  - '#f0a96c'
+  - '#f6c177'
+  - '#a6da95'
+  - '#7fb5a0'
+  - '#9ccfd8'
+  - '#8ba3d1'
+  - '#c4a7e7'
+  - '#eb6f92'

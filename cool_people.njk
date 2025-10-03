@@ -48,11 +48,117 @@ title: Cool People
 
 <div class="h-px bg-ui-elevated/50 my-6"></div>
 
-<section id="submit-site">
-  <button class="btn btn-primary">
+<section id="submit-site" x-data="{ open: false, token: getToken(), loading: false, message: '', showingMessage: false }" class="relative">
+  <button class="btn btn-primary" @click="open = true">
     <img src="{{ "heart" | icon("phosphor") }}" inline class="w-5 h-5">
     Add your website
   </button>
+
+  {% comp "drawer" %}
+    <div class="space-y-4 mb">
+      <p class="text-ui-text leading-tight text-sm">
+        Create the file <span class="bg-ui-elevated font-mono">.well-known/rowan</span> (without any file extension) in the root directory of your website, and paste this token into it:
+      </p>
+      <div class="w-37ch text-ui-text">
+        <div class="relative" x-data="{ copied: false }">
+          <label for="copy-token" class="sr-only">Copy Token</label>
+          <input type="text" name="copy-token" class="text-input col-span-6 overflow-x-auto p-2 border-none inline-block font-mono" :value="token" disabled readonly>
+          <button class="absolute bottom-1.5 end-2 hover:bg-ui-base p-1 inline-flex items-center justify-center text-ui-text/50"
+            @click="navigator.clipboard.writeText(token), copied = true, setTimeout(() => copied = false, 2000)"
+          >
+            <span x-show="!copied"><img src="{{ "copy" | icon("phosphor") }}" inline class="w-4 h-4"></span>
+            <span x-show="copied"><img src="{{ "check" | icon("phosphor") }}" inline class="w-4 h-4"></span>
+          </button>
+        </div>
+      </div>
+      <p class="text-ui-text leading-tight text-sm">
+        <span class="font-semibold text-[#eb6f92]">Warning:</span> Reloading this page WILL cause the token to refresh.
+      </p>
+    </div>
+    <div class="h-px bg-ui-elevated/50 my-6"></div>
+    <form class="mb-6" x-data="{ domain: '', selectedColour: Math.floor(Math.random() * 10) }" @submit.prevent="submitForm($data)">
+      <div class="space-y-4">
+        <div>
+          <label for="domain" class="input-label">Domain</label>
+          <input type="text" name="domain" class="text-input" placeholder="The domain name of your website" required
+            @input="$el.value = $el.value.replace(/[^A-Za-z0-9-.]/g, '')"
+            x-model="domain"
+          >
+        </div>
+        <div>
+          <legend for="colour" class="input-label">Colour</legend>
+          <div class="flex w-full justify-between">
+          {% for colour in website_colours %}
+            <button type="button" class="w-9 h-9 bg-[{{ colour }}] rounded-full border-none ring-transparent ring-4 hover:ring-[{{ colour + 50 }}] 
+            transition-all duration-200 text-ui-base inline-flex items-center justify-center"
+              data-id="{{ loop.index0 }}"
+              @click="selectedColour = $el.getAttribute('data-id')"
+            >
+              <span x-show="selectedColour == '{{ loop.index0 }}'"><img src="{{ "check" | icon("phosphor") }}" inline class="w-5 h-5"></span>
+            </button>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="h-px bg-ui-elevated/50 my-6"></div>
+      <button type="submit" class="btn btn-primary w-full inline-flex justify-center">
+        <span x-show="!loading"><img src="{{ "paper-plane-tilt" | icon("phosphor") }}" inline class="w-5 h-5"></span>
+        <span x-show="loading"><img src="{{ "circle-notch" | icon("phosphor") }}" inline class="w-5 h-5 animate-spin"></span>
+        <span x-text="loading ? 'Submitting...' : 'Submit Website'"></span>
+      </button>
+    </form>
+  {% endcomp %}
+
+  <div class="fixed top-7 right-7 p-3 text-ui-base text-sm font-medium z-999 py-2 inline-flex items-center gap-2" :style="{ backgroundColor: message.startsWith('Error') ? '#eb6f92' : '#a6da95' }"
+    x-show="showingMessage"
+    @click="showingMessage = false"
+    x-transition:enter.duration.300ms
+    x-transition:leave.opacity.duration.1500ms
+    >
+    <span x-show="message.startsWith('Error')"><img src="{{ "warning-circle" | icon("phosphor") }}" inline class="w-5 h-5"></span>
+    <span x-show="!message.startsWith('Error')"><img src="{{ "confetti" | icon("phosphor") }}" inline class="w-5 h-5"></span>
+    <p x-text="message"></p>
+  </div>
 </section>
 
 <script src="/assets/js/alpine.min.js" defer></script>
+<script>
+  function getToken() {
+    const arr = new Uint8Array(32);
+    crypto.getRandomValues(arr)
+    return btoa(String.fromCharCode(...arr))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
+  }
+
+  async function submitForm(state) {
+    state.loading = true
+    try {
+      const res = await fetch('/api/add_website/?' + new URLSearchParams({
+        domain: state.domain,
+        colour: state.selectedColour,
+        t: state.token
+      }), {
+        method: 'POST'
+      })
+
+      if (!res.ok) {
+        const text = await res.text()
+        throw new Error(`Error: ${text || res.status}`)
+      }
+      state.message = "Website submitted successfully!"
+    } catch (e) {
+      state.message = e.message
+    } finally {
+      state.loading = false
+      state.token = getToken()
+      state.domain = ''
+      state.open = false
+      state.showingMessage = true
+      setTimeout(() => {
+        state.showingMessage = false
+      }, 5000)
+    }
+  }
+</script>

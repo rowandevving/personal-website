@@ -52,7 +52,10 @@ site.use(unocss({
       'btn': `relative flex items-center gap-2 px-4 py-2 bg-ui-elevated text-ui-text font-medium text-sm 
       shadow-[0_4px_0_rgb(42,39,63)] active:translate-y-1 active:shadow-none transition-all`,
       'btn-primary': `bg-ui-accent text-ui-base shadow-[0_4px_0_rgb(234,154,151,0.5)]`,
-      'hero-text': `bg-gradient-to-r from-ui-accent to-[#c4a7e7] inline-block text-transparent bg-clip-text`
+      'hero-text': `bg-gradient-to-r from-ui-accent to-[#c4a7e7] inline-block text-transparent bg-clip-text`,
+      'text-input': `bg-ui-elevated/50 border-1 border-ui-elevated outline-none text-ui-text text-sm focus:border-ui-accent/80 focus:ring-ui-accent/80 focus:ring-1
+      block w-full p-2.5 placeholder:text-ui-text/50`,
+      'input-label': `block mb-2 text-sm font-semibold text-ui-text`
     }
   },
   cssFile: "styles.css",
