@@ -181,13 +181,6 @@ func AddWebsite(w http.ResponseWriter, r *http.Request) {
 	for _, susDomain := range susDomainsList {
 		if strings.HasSuffix(u.Hostname(), susDomain) {
 			approved = false
-
-			err := triggerWebhook(u.String(), client)
-			if err != nil {
-				http.Error(w, "Internal server error", http.StatusInternalServerError)
-				log.Printf("ERROR: Couldn't trigger webhook: %v", err)
-				return
-			}
 		}
 	}
 
@@ -195,6 +188,16 @@ func AddWebsite(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Couldn't update database", http.StatusInternalServerError)
 		log.Printf("ERROR: Couldn't update database: %v", err)
+		return
+	}
+
+	if !approved {
+		err := triggerWebhook(u.String(), client)
+		if err != nil {
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			log.Printf("ERROR: Couldn't trigger webhook: %v", err)
+			return
+		}
 	}
 
 	w.WriteHeader(http.StatusOK)
